@@ -2,7 +2,7 @@ const Customer = require("../models/customer.model.js");
 
 // Retrieve all Customers from the database.
 exports.findAll = (req, res) => {
-    Customer.getAll((err, data) => {
+    Book.getAll((err, data) => {
       if (err)
         res.status(500).send({
           message:
@@ -16,7 +16,7 @@ exports.findAll = (req, res) => {
   // Retrieve the pagination of the book 
 
   exports.findAll = (req, res) => {
-    Customer.getAll((err, data) => {
+    Book.getAll((err, data) => {
       if (err)
         res.status(500).send({
           message:
