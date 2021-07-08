@@ -1,5 +1,4 @@
-const Customer = require("../models/customer.model.js");
-
+const Book = require("../controller/book.get.js");
 // Retrieve all Customers from the database.
 exports.findAll = (req, res) => {
     Book.getAll((err, data) => {
