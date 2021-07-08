@@ -1,89 +1,24 @@
-const express = require('express')
-const exphbs= require('express-handlebars');
-const bodyParser = require('body-parser');
-const mysql=require ('mysql');
+const express = require("express");
+const bodyParser = require("body-parser");
 
-require('dotenv').config();
+const app = express();
 
-const app = express()
-const port = process.env.PORT|| 5000;
-//parsing middleware
-//parse application/ x-ww-form-url-encoded
+// parse requests of content-type: application/json
+app.use(bodyParser.json());
 
-app.use(bodyParser.urlencoded({extended:false}))
-//parse application/json
-app.use (bodyParser.json());
+// parse requests of content-type: application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 
-//static files
-app.use(express.static('public'));
+// simple route
+// app.get("/", (req, res) => {
+//   res.json({ message: "Welcome to bezkoder application." });
+// });
 
-//Templating engine
-app.engine('hbs',exphbs({extname:'hbs'}));
-app.set('view engine','hbs');
+const routes = require('./Routes/book');
+app.use('/', routes);
 
 
-//connection pool
-// const pool = mysql.createConnection.createPool({
-//     host    : process.env.DB_HOST,
-//     USER     :process.env.DB_USER,
-//     password  : process.env. DB_PASS,    
-//     database   :   process.env.DB_NAME
-
-
-// })
-
-// // COnnected to DB
-// pool.getConnection((err,connection)=>{
-//     if(err) throw err;
-//     console.log(`Connected as ID `+ connection.threadId);
-// })
-
-// // Router 
-//  app.get('',(req,res)=> {
-//      res.sender('home');
-//  })
-
-//MY SQL
-
-// const pool=mysql.createPool({
-//     // connectionLimit:5,
-//     host:'localhost',
-//     user:'root',
-//     password:'',
-//     database:'lms_db'
-//   })
-
-//   pool.getConnection((err,connection)=>{
-//       if(err) throw err;
-//       console.log(`Connected as ID` + connection.threadId);
-//   });
-
-  
-
-//   app.get('/lms_db',(req,res)=>{
-//     //   console.log('check')
-//     pool.getConnection((err,connection)=>{
-//       if(err) throw err
-//       console.log(`connected as id ${connection.threadId}`)
-  
-//       //query(sqlString, callback)
-//       connection.query('SELECT * from lms_book_details',(err,rows) => {
-//         connection.release()
-  
-//         if(!err) {
-//           res.send(rows)
-  
-//         } else {
-//           console.log(err)
-//         }
-//       })
-  
-//     })
-  
-//   })
-
-
-
-// LISTEN ON ENVIRONMENT PORT OR 5000
-
-app.listen(port,() => console.log(`listen on port ${port}`))
+// set port, listen for requests
+app.listen(3000, () => {
+  console.log("Server is running on port 3000.");
+});
