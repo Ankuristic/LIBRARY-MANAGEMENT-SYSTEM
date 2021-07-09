@@ -13,7 +13,7 @@ exports.findAll=(req,res)=>{
     })
 }
 
-// // to retrieve all booik by pagination
+// // to retrieve all book by pagination
 exports.findAllPagination=(req,res)=>{
     bookModel.getAllBookPagination((err,data)=>{
         if (err)
