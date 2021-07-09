@@ -1,4 +1,5 @@
 const express = require("express");
+const mysql= require("mysql");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -14,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   res.json({ message: "Welcome to bezkoder application." });
 // });
 
-const routes = require('./Routes/book');
+const routes = require('./Routes/routes');
 app.use('/', routes);
 
 
