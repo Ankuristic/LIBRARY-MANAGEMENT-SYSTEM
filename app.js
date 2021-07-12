@@ -1,6 +1,10 @@
 const express = require("express");
 const mysql= require("mysql");
 const bodyParser = require("body-parser");
+const controllers=require("./controllers/bookController")
+const jwt = require("jsonwebtoken");
+const bcrypt= require("bcryptjs");
+
 
 const app = express();
 
@@ -15,9 +19,34 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   res.json({ message: "Welcome to bezkoder application." });
 // });
 
-const routes = require('./Routes/routes');
-app.use('/', routes);
+const createToken =async() => {
+ const token  = await jwt.sign({_id:"123456789"},"mynameisankurshrivataytavbackenddeveloper");
+  console.log(token);
+  const userVer =await jwt.verify(token,"mynameisankurshrivataytavbackenddeveloper");
+  console.log("useVer");
+}
+createToken();
 
+
+app.get('/book',controllers.findAll);
+app.get('/lms_book_details/Pagination',controllers.findAllPagination);
+app.post('/user',controllers.storeUser);
+app.post("/signup",controller.signupuser)
+// app.post("/login",async(req,res)=>{
+//   try{
+//     const email= req.body.email;
+//     const password=req.body.password;
+//     console.log(`${email} and password is ${password}`)
+
+//   } catch(error){
+//     res.send(400).send("invalid email")
+//   }
+// })
+
+
+
+
+// const createToken
 
 // set port, listen for requests
 app.listen(3000, () => {

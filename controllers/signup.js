@@ -17,9 +17,23 @@ router.post('/', (req, res)=>{
       gender: req.body.gender
     };
 
-    
+    //password hash
+    const securePassword =async(password) =>{
 
-    exports.user(data, (errors, fields)=>{
+        const passwordHash= await bcrypt.hash(password,10)
+        //$2a$10$jNVc1r5CpietCcLqMPkSC.KOooX1sDITlldRNpds9G2g.WqbBlthu
+        console.log(passwordHash);
+        const passwordMatch= await bcrypt.compare(password,passwordHash)
+        console.log(passwordMatch)
+      
+      
+      }
+      
+      securePassword("ankur")
+      
+
+
+    exports.signupuser(data, (errors, fields)=>{
         if(!errors){
             userModel.createUser(data, function(result){
                 if(result){
