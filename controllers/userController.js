@@ -1,8 +1,8 @@
 const userModel=require("../models/controllers")
 
 // to retrieve all user data
-exports.findAll=(req,res)=>{
-    userModel.getUser((err,data)=>{
+exports.storeUser=(req,res)=>{
+    userModel.insertUser((err,data)=>{
         if (err)
       res.status(500).send({
         message:
