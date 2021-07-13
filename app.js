@@ -40,12 +40,12 @@ app.post("/api/signup", function(req, res) {
   })
 });
 app.post("/api/login", function(req, res) {
-  loginController.loginuser(req, function(err, data){
+  loginController.login(req, function(err, data){
       res.send(data);
   })
 });
 
-// app.get('/api/getIssueBook',controllers.bookGetByStudent);
+app.get('/api/getIssueBook',controllers.bookGetByStudent);
 
 
 
