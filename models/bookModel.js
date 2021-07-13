@@ -63,3 +63,14 @@ exports.getAllBookPagination= function(result){
         }
     });
 }
+
+
+
+
+
+exports. booksIssuedByStudent = (book, callback) => {
+    var issueBook = "SELECT * FROM books WHERE lms_book_details = ?";
+    sql.query(issueBook, [book], function(result) {
+        callback(result);
+    });
+};

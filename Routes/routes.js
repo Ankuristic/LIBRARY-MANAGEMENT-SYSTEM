@@ -6,12 +6,13 @@ const controllers= require('/controllers/userControllers')
 
 
 
+
 // book routes
 
 app.get('/lms_book_details',controllers.findAll);
 app.get('/lms_book_details/Pagination',controllers.findAllPagination);
 app.post('/user',controllers.storeUser);
-app.post("/signup",controller.signupuser)
+// app.post("/signup",controller.signupuser)
 
 
 
