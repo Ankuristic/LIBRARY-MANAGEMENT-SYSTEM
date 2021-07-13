@@ -12,16 +12,20 @@ exports.login = function(req, res){
  userModel.loginUser(req.body.email, function(result){
      if(!result){
        res.render('login',{errs:[{message:'invalid email'}]});
-        
-    }
-    else {
-      var token = jwt.sign({email:user.email}, 
+       var token = jwt.sign({email:user.email}, 
         "mynameiaankurbackenddeveloper", {
             expiresIn:"7days"
         })
-        res.send(token)
-    
+
+        res.send({"status":"200","statuscode":"1","result":result});
+        console.log(token);
         console.log(result);
+    
+        
+    }
+    else {
+      
+      res('Invalid   email ');
     }
     });
   console.log(req.body);
