@@ -1,8 +1,9 @@
 var userModel = require.main.require('./models/userModel');
 const bcrypt= require("bcryptjs")
-const password="ankur"
-const saltRounds=10
-const hash="YOUR_HASH_STRING"
+const saltRounds = 10;
+const myPlaintextPassword = 's0/\/\P4$$w0rD';
+const someOtherPlaintextPassword = 'not_bacon';
+
 
 
 // router.get('/', (req, res)=>{
@@ -43,33 +44,22 @@ exports.signupuser = function(req, res){
       gender: req.body.gender
     };
 
-    bcrypt.genSalt(saltRounds, function (err, salt) {
-        if (err) {
-          throw err
-        } else {
-          bcrypt.hash(password, salt, function(err, hash) {
-            if (err) {
-              throw err
-            } else {
-              console.log(hash)
-              //$2a$10$FEBywZh8u9M0Cec/0mWep.1kXrwKeiWDba6tdKvDfEBjyePJnDT7K
-            }
-          })
-        }
-      })
-
-      bcrypt.compare(data.password, hash, function(err, isMatch) {
-        if (err) {
-          throw err
-        } else if (!isMatch) {
-          console.log("Password doesn't match!")
-        } else {
-          console.log("Password matches!")
-        }
-      })
+    
   
      userModel.createUser(data, function(result){
          if(result){
+          bcrypt.genSalt(saltRounds, function(err, salt) {
+            bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
+                // Store hash in your password DB.
+            });
+        });
+        bcrypt.compare(password, hash, function(err, result) {
+          // result == true
+      });
+      bcrypt.compare(someOtherPlaintextPassword, hash, function(err, result) {
+          // result == false
+      });
+    
             console.log(result);
             res(result);
         }

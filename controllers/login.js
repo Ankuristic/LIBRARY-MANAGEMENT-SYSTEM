@@ -10,6 +10,7 @@ exports.login = function(req, res){
   
 };
  userModel.loginUser(req.body.email, function(result){
+   console.log('ankur')
      if(!result){
        res.send('login',{errs:[{message:'invalid email'}]});
        var token = jwt.sign({email:user.email}, 
@@ -25,10 +26,10 @@ exports.login = function(req, res){
     }
     else {
       
-      res('valid   email ');
+      res('valid  email ');
     }
     });
-    console.log(result);
+    // console.log(result);
 //   console.log(req.body);
 }
 
