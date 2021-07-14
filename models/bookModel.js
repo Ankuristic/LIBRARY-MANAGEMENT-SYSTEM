@@ -75,19 +75,27 @@ exports. booksIssuedByStudent = (book, callback) => {
     });
 };
 
-// book setisuue
-exports. setIssueDate = (book_id, user_id, callback) => {
-    var date = new Date();
-    var sql = "INSERT INTO issue_date VALUES(null, ?, ?, ?)";
-    db.executeQuery(sql, [book_id, user_id, date], function(result) {
-        callback(result);
-    });
-};
+// // book setisuue
+// exports. setIssueDate = (book_id, user_id, callback) => {
+//     var date = new Date();
+//     var sql = "INSERT INTO issue_date VALUES(null, ?, ?, ?)";
+//     db.executeQuery(sql, [book_id, user_id, date], function(result) {
+//         callback(result);
+//     });
+// };
 
-//get all borroed book
-exports. getAllBorrowedBooks = (callback) => {
-    var sql = "SELECT * FROM issue_date";
-    db.executeQuery(sql, null, function(result) {
-        callback(result);
-    });
-};
+// //stored  all borroed book
+// exports. getAllBorrowedBooks = (callback) => {
+//     var sql = "SELECT * FROM issue_date";
+//     db.executeQuery(sql, null, function(result) {
+//         callback(result);
+//     });
+// };
+
+
+ exports. storedAllBorrowedBooks =(book_id, user_id, issue_date , callback) =>{
+     const query = "INSERT INTO lms_borrowed_book (book_id,user_id,issue_date) VALUES (?,?,?)";
+     sql.query(book_id,user_id,issue_date,function(result){
+         callback(result);
+     })
+ }

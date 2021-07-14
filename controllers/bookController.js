@@ -54,7 +54,7 @@ exports.bookGetByStudent=(req,res)=>{
 
 // get all borrowed book 
 exports.getAllBorrowed=(req,res)=>{
-  bookModel.getAllBorrowedBooks((err,data)=>{
+  bookModel.storedAllBorrowedBooks((err,data)=>{
     console.log(err);
     console.log(data);
 
