@@ -47,7 +47,7 @@ app.post("/api/login", function(req, res) {
 });
 
 app.get('/api/getIssueBook',controllers.bookGetByStudent);
-app.get('/api/lms_borrowed_book',controllers.getAllBorrowed);
+app.post('/api/lms_borrowed_book',controllers.getAllBorrowed);
 
 
 
