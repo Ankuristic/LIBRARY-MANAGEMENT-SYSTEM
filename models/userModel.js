@@ -15,13 +15,17 @@ exports.createUser = (user, callback) => {
 };
 
 
-exports.loginUser = (email, password, callback) => {
-    const login = "SELECT * FROM user WHERE email = ? AND password = ?";
-    sql.query(login, [email, password], function(result) {
+exports.loginUser = (email, callback) => {
+    const login = "SELECT * FROM user WHERE email = ? ";
+    sql.query(login, [email], function(err,result) {
+        console.log(err);
         console.log(result);
-        callback(result[0]);
+        callback(result);
     });
+    
+    console.log("ankur")
 };
+
 
 
    

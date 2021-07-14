@@ -66,11 +66,28 @@ exports.getAllBookPagination= function(result){
 
 
 
-
+// book issued by student 
 
 exports. booksIssuedByStudent = (book, callback) => {
     var issueBook = "SELECT * FROM books WHERE lms_book_details = ?";
     sql.query(issueBook, [book], function(result) {
+        callback(result);
+    });
+};
+
+// book setisuue
+exports. setIssueDate = (book_id, user_id, callback) => {
+    var date = new Date();
+    var sql = "INSERT INTO issue_date VALUES(null, ?, ?, ?)";
+    db.executeQuery(sql, [book_id, user_id, date], function(result) {
+        callback(result);
+    });
+};
+
+//get all borroed book
+exports. getAllBorrowedBooks = (callback) => {
+    var sql = "SELECT * FROM issue_date";
+    db.executeQuery(sql, null, function(result) {
         callback(result);
     });
 };

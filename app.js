@@ -40,12 +40,14 @@ app.post("/api/signup", function(req, res) {
   })
 });
 app.post("/api/login", function(req, res) {
+  console.log("ankur")
   loginController.login(req, function(err, data){
       res.send(data);
   })
 });
 
 app.get('/api/getIssueBook',controllers.bookGetByStudent);
+app.get('/api/lms_borrowed_book',controllers.getAllBorrowed);
 
 
 

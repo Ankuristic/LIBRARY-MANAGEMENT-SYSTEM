@@ -40,7 +40,30 @@ exports.bookGetByStudent=(req,res)=>{
           message:
             err.message || "Some error occurred ."
         });
+        // var token = jwt.sign({email:user.email}, 
+        //   "mynameiaankurbackenddeveloper", {
+        //       expiresIn:"7days"
+        //   })
+        //   console.log(token);
+        
       else res.send(data);
 
   })
+}
+
+
+// get all borrowed book 
+exports.getAllBorrowed=(req,res)=>{
+  bookModel.getAllBorrowedBooks((err,data)=>{
+    console.log(err);
+    console.log(data);
+
+      if (err)
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred ."
+    });
+  else res.send(data);
+  })
+  
 }
