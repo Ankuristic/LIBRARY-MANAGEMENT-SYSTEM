@@ -12,19 +12,27 @@ exports.login = function(req, res){
  userModel.loginUser(req.body.email, function(result){
    console.log('ankur')
      if(!result){
-       res.send('login',{errs:[{message:'invalid email'}]});
-       var token = jwt.sign({email:user.email , user: user_id}, 
-        "mynameiaankurbackenddeveloper", {
-            expiresIn:"7days"
-        })
+       res('login',{errs:[{message:'invalid email'}]});
+       
+      //  var token = jwt.sign({email:data.email }, 
+      //   "mynameiaankurbackenddeveloper", {
+      //       expiresIn:"7days"
+      //   })
 
-        res.send({"status":"200","statuscode":"1","result":result});
-        console.log(token);
+        // res.send({"status":"200","statuscode":"1","result":result});
+        // console.log(token);
         // console.log(result);
     
         
     }
     else {
+      var token = jwt.sign({email:data.email }, 
+        "mynameisankur456789123", {
+            expiresIn:"7days"
+            
+        })
+        console.log(token)
+
       
       res('valid  email ');
     }
