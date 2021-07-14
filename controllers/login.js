@@ -13,7 +13,7 @@ exports.login = function(req, res){
    console.log('ankur')
      if(!result){
        res.send('login',{errs:[{message:'invalid email'}]});
-       var token = jwt.sign({email:user.email}, 
+       var token = jwt.sign({email:user.email , user: user_id}, 
         "mynameiaankurbackenddeveloper", {
             expiresIn:"7days"
         })

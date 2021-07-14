@@ -61,39 +61,43 @@ exports.getAllBorrowed=(req,res)=>{
 
   }
 
-  bookModel.storedAllBorrowedBooks(req.body.user_id, function(err,data){
-    if(data)
-      res.send({
-      const token = jwt.sign({user:user_id}, 
-       "mynameiaankurbackenddeveloper", 
-       {
-           expiresIn:"7days"
-       })
-      })
-       console.log(token);
-       // console.log(result);
-   
-   else {
-     res(err);
-  }
 
-   });
+
+  bookModel.storedAllBorrowedBooks((err,data)=>{
+    console.log(err);
+    console.log(data);
+
+      if (err)
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred ."
+    });
+   {
+    var token = req.headers['x-access-token'];
+    if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+    
+    jwt.verify(token, config.secret, function(err, decoded) {
+      if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+      
+      res.status(200).send(decoded);
+    });
+   };
+    
+  else res.send(data);
+  })
+ 
+  
 }
 
 
-//   bookModel.storedAllBorrowedBooks((err,data)=>{
-//     console.log(err);
-//     console.log(data);
 
-//       if (err)
-//     res.status(500).send({
-//       message:
-//         err.message || "Some error occurred ."
-//     });
-//   else res.send(data);
-//   })
+//  {
+//   var token = req.headers['x-access-token'];
+//   if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
   
-// }
-
-
-
+//   jwt.verify(token, config.secret, function(err, decoded) {
+//     if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+    
+//     res.status(200).send(decoded);
+//   });
+//  };
