@@ -34,7 +34,7 @@ const saltRounds = 10;
       
 
 
-exports.signupuser = function(req, res){
+exports.signupuser =  function(req, res){
         var data = {
       name: req.body.name,
       email: req.body.email,

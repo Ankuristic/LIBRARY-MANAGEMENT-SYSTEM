@@ -3,46 +3,30 @@ const jwt= require('jsonwebtoken');
 
 
 exports.login = function(req, res){
-    var data = {
-  
-  email: req.body.email,
-  password: req.body.password,
-  
+var data = {
+email: req.body.email,
+password: req.body.password,
+
 };
- userModel.loginUser(req.body.email, function(result){
-   console.log('ankur')
-     if(!result){
-       res('login',{errs:[{message:'invalid email'}]});
-       
-      //  var token = jwt.sign({email:data.email }, 
-      //   "mynameiaankurbackenddeveloper", {
-      //       expiresIn:"7days"
-      //   })
-
-        // res.send({"status":"200","statuscode":"1","result":result});
-        // console.log(token);
-        // console.log(result);
-    
-        
-    }
-    else {
-      var token = jwt.sign({email:data.email }, 
-        "mynameisankur456789123", {
-            expiresIn:"7days"
+userModel.loginUser(req.body.email, function(result){
+ console.log('ankur')
+   if(!result){
+     res('login',{errs:[{message:'invalid email'}]});
+  }
+  else {
+    var token = jwt.sign({email:data.email }, 
+      "mynameisankur456789123", {
+          expiresIn:"7days"
             
-        })
-        console.log(token)
+      })
+      console.log(token)
+      res(token)
 
-      
-      res('valid  email ');
-    }
-    });
-    // console.log(result);
-//   console.log(req.body);
+    
+    // res('valid  email ');
+  }
+  });
 }
-
-
-
 
 
  
@@ -54,3 +38,6 @@ exports.login = function(req, res){
   //         res.send({"status":"200","statuscode":"1","result":data});
   //     });
   // })
+
+
+

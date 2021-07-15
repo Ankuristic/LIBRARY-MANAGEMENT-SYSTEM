@@ -42,12 +42,13 @@ app.post("/api/signup", function(req, res) {
 app.post("/api/login", function(req, res) {
   console.log("ankur")
   loginController.login(req, function(err, data){
-      res.send(data);
+     res.send(err);
+     
   })
 });
 
 app.get('/api/getIssueBook',controllers.bookGetByStudent);
-app.post('/api/lms_borrowed_book',controllers.getAllBorrowed);
+app.post('/api/lms_borrowed_book', controllers.getAllBorrowed);
 
 
 
